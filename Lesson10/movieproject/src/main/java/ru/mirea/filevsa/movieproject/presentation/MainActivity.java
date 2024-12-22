@@ -25,22 +25,16 @@ public class MainActivity extends AppCompatActivity {
 
         MovieStorage sharedPrefMovieStorage = new SharedPrefMovieStorage(this);
         MovieRepository movieRepository = (MovieRepository) new MovieRepositoryImpl(sharedPrefMovieStorage);
-        findViewById(R.id.buttonSaveMovie).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Boolean result = new
-                        ru.mirea.filevsa.domain.domain.usecases.SaveFilmToFavoriteUseCase(movieRepository).execute(new ru.mirea.filevsa.domain.domain.models.Movie(2,
-                        text.getText().toString()));
-                textView.setText(String.format("Save result %s", result));
-            }
+        findViewById(R.id.buttonSaveMovie).setOnClickListener((View view) -> {
+            Boolean result = new
+                    ru.mirea.filevsa.domain.domain.usecases.SaveFilmToFavoriteUseCase(movieRepository).execute(new ru.mirea.filevsa.domain.domain.models.Movie(2,
+                    text.getText().toString()));
+            textView.setText(String.format("Save result %s", result));
         });
 
-        findViewById(R.id.buttonGetMovie).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ru.mirea.filevsa.domain.domain.models.Movie moview = new ru.mirea.filevsa.domain.domain.usecases.GetFavoriteFilmUseCase(movieRepository).execute();
-                textView.setText(String.format("Save result %s", moview.getName()));
-            }
+        findViewById(R.id.buttonGetMovie).setOnClickListener((View view) -> {
+            ru.mirea.filevsa.domain.domain.models.Movie moview = new ru.mirea.filevsa.domain.domain.usecases.GetFavoriteFilmUseCase(movieRepository).execute();
+            textView.setText(String.format("Save result %s", moview.getName()));
         });
     }
 
